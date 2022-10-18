@@ -78,13 +78,12 @@
     }
     initAccordion() {
       const thisProduct = this;
-      console.log('dupa dupa:', thisProduct);
 
       /* find the clickable trigger (the element that should react to clicking) */
 
       //event listener powinien być na czymś innym niż na dokumencie, ale nie mogę dojść do tego, na czym.
       //Próbowałam na article.product, ale wtedy oddaje mi Node List tylko z tym jednym elementem.
-      const clickableTrigger = document.querySelector(select.menuProduct.clickable);
+      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       console.log('YO:', clickableTrigger);
 
       /* START: add event listener to clickable trigger on event click */
@@ -93,14 +92,22 @@
         // /* prevent default action for event */
         event.preventDefault();
         // /* find active product (product that has active class) */
-        // const activeProduct = document.querySelector('article.active');
-        // console.log('dupa:', activeProduct);
-        // /* if there is active product and it's not thisProduct.element, remove class active from it */
+        const activeProduct = document.querySelector('article.active');
+        /* if there is active product and it's not thisProduct.element, remove class active from it */
         // if (activeProduct && !thisProduct.element) {
         //   activeProduct.classList.remove('active');
+        //   console.log('ELOOOO');
+        // } else {
+        //   thisProduct.element.classList.toggle('active');
+        //   if (activeProduct) {
+        //     activeProduct.classList.remove('active');
+        //   }
+        //   console.log('clicked');
         // }
-        // /* toggle active class on thisProduct.element */
-        // thisProduct.element.classList.toggle('active');
+        thisProduct.element.classList.toggle('active');
+        if (activeProduct) {
+          activeProduct.classList.remove('active');
+        }
         console.log('clicked');
       });
 
