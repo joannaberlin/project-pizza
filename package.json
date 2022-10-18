@@ -33,6 +33,7 @@
         "browser-sync": "^2.26.3",
         "copyfiles": "^2.1.0",
         "eslint": "^5.14.1",
+        "eslint-plugin-prettier": "^4.2.1",
         "globstar": "^1.0.0",
         "html-validate": "^7.3.2",
         "mkdirp": "^0.5.1",

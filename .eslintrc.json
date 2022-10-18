@@ -28,7 +28,9 @@
         "no-console": [
             "off"
         ]
+        // "prettier/prettier": "error"
     },
+    // "plugins": ["prettier"],
     "globals": {
       "Handlebars": false
     }
