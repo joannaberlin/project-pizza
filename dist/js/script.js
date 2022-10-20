@@ -151,7 +151,6 @@
       thisProduct.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
-        thisProduct.prepareCartProductParams();
         thisProduct.addToCart();
       });
     }
@@ -219,7 +218,7 @@
     }
     addToCart() {
       const thisProduct = this;
-      thisProduct.prepareCartProduct();
+      app.cart.add(thisProduct.prepareCartProduct());
     }
     prepareCartProduct() {
       const thisProduct = this;
@@ -230,7 +229,7 @@
         amount: thisProduct.amountWidget.value,
         priceSingle: thisProduct.priceSingle,
         price: thisProduct.priceTotal,
-        params: {},
+        params: thisProduct.prepareCartProductParams(),
       };
       console.log(productSummary);
       return productSummary;
@@ -241,13 +240,11 @@
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
       // console.log('formData:', formData);
-
       const params = {};
       // for every category (param)...
       for(let paramId in thisProduct.data.params) {
       // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        console.log('paramIdL', paramId);
         //create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
           label: param.label,
@@ -258,26 +255,17 @@
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
-          console.log('optionId', optionId);
           // check if there is param with a name of paramId in formData and if it includes optionId
           if (optionSelected) {
             //here is what was selected
             //add all selected options to object params
-            console.log('DUPA:', option);
-            console.log('DUPA2', params[paramId].options);
-
-            //kod, który doda do params[paramId].options konkretną opcję
-            // params[paramId].options = {
-            //   optionId: option.label,
-            // };
-            params[paramId].options.label = option.label;
-
-            // params[paramId].options.option[paramId];
+            params[paramId].options[option.label] = option.label;
+            // params[paramId].options.label = option.label;
           }
         }
       }
       console.log('DUPA3', params);
-      // return params;
+      return params;
     }
   }
 
@@ -344,17 +332,19 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
+      thisCart.add();
 
       console.log('new Cart:', thisCart);
     }
     getElements(element) {
       const thisCart = this;
-
+      console.log('ELEMENT', element);
       thisCart.dom = {};
 
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
     initActions() {
       const thisCart = this;
@@ -365,8 +355,12 @@
       });
     }
     add(menuProduct) {
-      //const thisProduct = this;
+      const thisCart = this;
+      /* generate HTML based on template */
+      const generatedHTML = templates.cartProduct(menuProduct);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
+      thisCart.dom.productList.appendChild(generatedDOM);
       console.log('adding product', menuProduct);
     }
   }
