@@ -332,7 +332,6 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-      thisCart.add();
 
       console.log('new Cart:', thisCart);
     }
