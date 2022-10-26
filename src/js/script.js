@@ -116,6 +116,11 @@
     getElements() {
       const thisProduct = this;
 
+      // thisProduct.dom = {};
+
+      // thisProduct.dom.wrapper = thisProduct.element;
+      // console.log('ELEMENT', thisProduct.dom.wrapper);
+
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
@@ -527,7 +532,7 @@
       return dataOrder;
     }
   }
-
+  //obiekt, który pomaga w organizacji kodu aplikacji
   const app = {
     initMenu: function() {
       const thisApp = this;
@@ -572,11 +577,13 @@
 
     initCart: function() {
       const thisApp = this;
-
+      console.log('DUPA', thisApp);
       const cartElem = document.querySelector(select.containerOf.cart);
       thisApp.cart = new Cart(cartElem);
     }
   };
-
+  //wywołanie metody, która uruchamia wszystkie pozostałe komponenty aplikacji
   app.init();
 }
+
+
