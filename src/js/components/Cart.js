@@ -54,7 +54,7 @@ class Cart {
 
     thisCart.dom.productList.appendChild(generatedDOM);
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    console.log('YOOOO', thisCart.products);
+
     thisCart.update();
   }
   update() {
@@ -62,9 +62,8 @@ class Cart {
     let deliveryFee = settings.cart.defaultDeliveryFee;
     thisCart.totalNumber = 0;
     thisCart.subtotalPrice = 0;
-    console.log(thisCart);
+
     for (let product of thisCart.products) {
-      console.log(product);
       thisCart.totalNumber += product.amount;
       thisCart.subtotalPrice += product.price;
     }
