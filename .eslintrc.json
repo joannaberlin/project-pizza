@@ -9,10 +9,7 @@
         "sourceType": "module"
     },
     "rules": {
-        "indent": [
-            "error",
-            2
-        ],
+        "indent": ["error", 2],
         "linebreak-style": [
             "off"
         ],
@@ -28,7 +25,6 @@
         "no-console": [
             "off"
         ]
-        // "prettier/prettier": "error"
     },
     // "plugins": ["prettier"],
     "globals": {
