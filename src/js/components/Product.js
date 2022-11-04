@@ -129,7 +129,6 @@ class Product {
     }
     thisProduct.priceSingle = price;
     price *= thisProduct.amountWidget.value;
-    // console.log('PRICE', price);
     thisProduct.priceTotal = price;
     // update calculated price in the HTML
     thisProduct.priceElem.innerHTML = price;
