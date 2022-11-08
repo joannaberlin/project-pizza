@@ -189,34 +189,6 @@ class Booking {
       console.log(thisBooking.tableData);
     }
     console.log('data', thisBooking.tableData);
-
-    // for (let table of thisBooking.dom.tables) {
-    //   if (table === thisBooking.pickedTable) {
-    //     tableSelected = true;
-    //     break;
-    //   }
-    // }
-    // if (tableSelected && !tableBooked && !tableWithClassSelected && thisBooking.tableData === null) {
-    //   thisBooking.tableNumber = numberOfPickedTable;
-    //   thisBooking.tableData = thisBooking.tableNumber;
-    //   if (tableWithClassSelected) {
-    //     thisBooking.pickedTable.classList.remove(classNames.booking.tableSelected);
-    //     console.log('DUPA');
-    //   } else {
-    //     thisBooking.pickedTable.classList.add(classNames.booking.tableSelected);
-    //   }
-
-    //   console.log(thisBooking.tableData);
-    // } else if (tableBooked) {
-    //   alert('Table unavailable! Please check another date or hour.');
-    // } else {
-    //   thisBooking.tableNumber = thisBooking.pickedTable.getAttribute(select.booking.tableNumber);
-    //   thisBooking.pickedTable.classList.remove(classNames.booking.tableSelected);
-
-    //   thisBooking.tableData = null;
-    //   console.log(thisBooking.tableData);
-    // }
-    // console.log('data', thisBooking.tableData);
   }
 
   render() {
