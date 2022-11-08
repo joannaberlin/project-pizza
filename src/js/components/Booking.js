@@ -172,32 +172,51 @@ class Booking {
     const tableBooked = thisBooking.pickedTable.classList.contains(classNames.booking.tableBooked);
     const tableWithClassSelected = thisBooking.pickedTable.classList.contains(classNames.booking.tableSelected);
     const numberOfPickedTable = thisBooking.pickedTable.getAttribute(select.booking.tableNumber);
-    let tableSelected = false;
+
 
     for (let table of thisBooking.dom.tables) {
-      if (table === thisBooking.pickedTable) {
-        tableSelected = true;
+      if (tableBooked) {
+        alert('Table unavailable! Please check another date or hour.');
+        break;
+      } else if (tableWithClassSelected) {
+        thisBooking.pickedTable.classList.remove(classNames.booking.tableSelected);
+        thisBooking.tableData = null;
+        console.log(thisBooking.tableData);
         break;
       }
-    }
-    if (tableSelected && !tableBooked && !tableWithClassSelected) {
-      thisBooking.tableNumber = numberOfPickedTable;
-      // thisBooking.tableData.push(thisBooking.tableNumber);
-      thisBooking.tableData = thisBooking.tableNumber;
-      thisBooking.pickedTable.classList.add(classNames.booking.tableSelected);
-      console.log(thisBooking.tableData);
-    } else if (tableBooked) {
-      alert('Table unavailable! Please check another date or hour.');
-    } else {
-      thisBooking.tableNumber = thisBooking.pickedTable.getAttribute(select.booking.tableNumber);
-      thisBooking.pickedTable.classList.remove(classNames.booking.tableSelected);
-      //remove data about that table from tables array
-      // const indexOfSelectedTable = thisBooking.tableData.indexOf(thisBooking.tableNumber);
-      // thisBooking.tableData.splice(indexOfSelectedTable, 1);
-      thisBooking.tableData = null;
+      table.classList.toggle(classNames.booking.tableSelected, table == thisBooking.pickedTable);
+      thisBooking.tableData = numberOfPickedTable;
       console.log(thisBooking.tableData);
     }
     console.log('data', thisBooking.tableData);
+
+    // for (let table of thisBooking.dom.tables) {
+    //   if (table === thisBooking.pickedTable) {
+    //     tableSelected = true;
+    //     break;
+    //   }
+    // }
+    // if (tableSelected && !tableBooked && !tableWithClassSelected && thisBooking.tableData === null) {
+    //   thisBooking.tableNumber = numberOfPickedTable;
+    //   thisBooking.tableData = thisBooking.tableNumber;
+    //   if (tableWithClassSelected) {
+    //     thisBooking.pickedTable.classList.remove(classNames.booking.tableSelected);
+    //     console.log('DUPA');
+    //   } else {
+    //     thisBooking.pickedTable.classList.add(classNames.booking.tableSelected);
+    //   }
+
+    //   console.log(thisBooking.tableData);
+    // } else if (tableBooked) {
+    //   alert('Table unavailable! Please check another date or hour.');
+    // } else {
+    //   thisBooking.tableNumber = thisBooking.pickedTable.getAttribute(select.booking.tableNumber);
+    //   thisBooking.pickedTable.classList.remove(classNames.booking.tableSelected);
+
+    //   thisBooking.tableData = null;
+    //   console.log(thisBooking.tableData);
+    // }
+    // console.log('data', thisBooking.tableData);
   }
 
   render() {
@@ -258,25 +277,17 @@ class Booking {
 
   sendBooking() {
     const thisBooking = this;
-    console.log(thisBooking.datePickerWidget);
+
     const url = settings.db.url + '/' + settings.db.booking;
 
     const payload = {
-      // "date": data wybrana w datePickerze
       date: thisBooking.datePickerWidget.correctValue,
-      // "hour": godzina wybrana w hourPickerze (w formacie HH:ss)
       hour: thisBooking.hourPickerWidget.correctValue,
-      // "table": numer wybranego stolika (lub null jeśli nic nie wybrano)
       table: parseInt(thisBooking.tableData),
-      // "duration": liczba godzin wybrana przez klienta
       duration: parseInt(thisBooking.dom.hoursAmountInput.value),
-      // "ppl": liczba osób wybrana przez klienta
       ppl: parseInt(thisBooking.dom.peopleAmountInput.value),
-      // "starters": [],
       starters: [],
-      // "phone": numer telefonu z formularza,
       phone: thisBooking.dom.phone.value,
-      // "address": adres z formularza
       address: thisBooking.dom.address.value
     };
 
