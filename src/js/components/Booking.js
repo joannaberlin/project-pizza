@@ -101,7 +101,6 @@ class Booking {
       event.preventDefault();
 
       thisBooking.sendBooking();
-      thisBooking.pickedTable.classList.remove(classNames.booking.tableSelected);
     });
   }
 
@@ -228,8 +227,6 @@ class Booking {
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
     });
-
-
   }
 
   initActions() {
@@ -282,6 +279,8 @@ class Booking {
       }).then(function(parsedResponse){
         console.log('parsedResponse:', parsedResponse);
         thisBooking.makeBooked(parsedResponse.date, parsedResponse.hour, parsedResponse.duration, parsedResponse.table);
+        thisBooking.pickedTable.classList.remove(classNames.booking.tableSelected);
+        thisBooking.updateDOM();
         console.log(thisBooking.booked);
       });
 
