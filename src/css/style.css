@@ -846,7 +846,41 @@ input.error, select.error {
   padding-bottom: 30px;
 }
 
+/* carousel */
+.carousel-text {
+  margin: 0 40px;
+}
+
+.carousel-cell {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 80px;
+}
+
+.carousel-cell h2 {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+.carousel-cell img {
+  height: 210px;
+  width: 210px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.carousel-cell:before {
+  display: block;
+  content: "";
+}
+
 /* Section restaurant-images */
+.restaurant-images {
+  margin-top: 80px;
+}
+
 .images-insta {
   display: flex;
   flex-wrap: wrap;
