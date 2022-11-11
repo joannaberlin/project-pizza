@@ -76,6 +76,9 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
+  homepage: {
+    infoLinks: '.main-info-link',
+  }
 };
 
 export const classNames = {

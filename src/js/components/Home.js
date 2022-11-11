@@ -5,7 +5,6 @@ class Home {
     const thisHome = this;
 
     thisHome.element = element;
-    console.log(thisHome.element);
 
     thisHome.render();
   }
