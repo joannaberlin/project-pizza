@@ -917,6 +917,9 @@ input.error, select.error {
   cursor: pointer;
   z-index: 1;
 }
+.img-container:hover .icons {
+  visibility: visible;
+}
 
 .icons {
   top: 50%;
@@ -924,6 +927,7 @@ input.error, select.error {
   transform: translate(-50%, -50%);
   position: absolute;
   z-index: 2;
+  visibility: hidden;
 }
 
 .icons i {

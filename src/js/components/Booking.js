@@ -207,7 +207,6 @@ class Booking {
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
     thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starter);
-
   }
 
   initWidgets() {
@@ -218,15 +217,6 @@ class Booking {
 
     thisBooking.datePickerWidget = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPickerWidget = new HourPicker(thisBooking.dom.hourPicker);
-
-    thisBooking.dom.peopleAmount.addEventListener('updated', function() {
-    });
-    thisBooking.dom.hoursAmount.addEventListener('updated', function() {
-    });
-
-    thisBooking.dom.wrapper.addEventListener('updated', function(){
-      thisBooking.updateDOM();
-    });
   }
 
   initActions() {
@@ -239,6 +229,15 @@ class Booking {
         thisBooking.pickedTable = element;
         thisBooking.initTables();
       }
+    });
+
+    thisBooking.dom.peopleAmount.addEventListener('updated', function() {
+    });
+    thisBooking.dom.hoursAmount.addEventListener('updated', function() {
+    });
+
+    thisBooking.dom.wrapper.addEventListener('updated', function(){
+      thisBooking.updateDOM();
     });
   }
 
