@@ -12,6 +12,7 @@ class Booking {
     thisBooking.tableData = null;
 
     thisBooking.render();
+    thisBooking.initElements();
     thisBooking.initWidgets();
     thisBooking.initActions();
     thisBooking.getData();
@@ -193,6 +194,10 @@ class Booking {
     thisBooking.dom.wrapper = thisBooking.element;
 
     thisBooking.element.innerHTML = generatedHTML;
+  }
+
+  initElements() {
+    const thisBooking = this;
 
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
